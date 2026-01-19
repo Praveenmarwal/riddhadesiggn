@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>riddha desiggn - modern architecture coming soon</title>
+  <meta name="description"
+    content="Discover Riddha Desiggn, a cutting-edge architecture ecosystem where design meets purpose. Explore our immersive archiverse, redefining how you design, build, and live spaces.">
+  <meta name="keywords"
+    content="Riddha Desiggn, architecture ecosystem, immersive archiverse, modern architecture, design innovation, building design, living spaces, architectural excellence">
+  <link rel="icon" href="assets/images/fav.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar navbar-light bg-white">
+      <div class="container">
+        <span class="navbar-brand mb-0 d-block">
+          <img src="assets/images/logo.png" alt="#" class="img-fluid">
+        </span>
+        <div class="countdown-number">
+          Coming Soon <span id="CountDown">30:20:30</span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="first-section">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md-8">
+          <h1 class="heading">A Whole New <br> Ecosystem Of <span>Architecture</span></h1>
+          <ul class="main-listing">
+            <li>Where design meets purpose, and structure meets storytelling.</li>
+            <li>An Immersive Archiverse redefining how you <span class="listing-span-1"> Design, </span><span
+                class="listing-span-2"> Build, </span> And <span class="listing-span-3">Live Spaces.</span></li>
+          </ul>
+          <div class="main-hero-card">
+            <h2>A Vision. A Blueprint. A Legacy. </h2>
+            <p>An ecosystem of architectural excellence, built for future-ready living.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="hero-right">
+            <span class="coming-soon-badge">
+              <img src="assets/images/coming-soon-badge.png" alt="#" class="img-fluid">
+            </span>
+            <img src="assets/images/image 1.png" alt="#" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="unlimited-slide-text">
+      <div class="slide-text-animation">
+        <div class="animated-text-sapn1">
+          <span> Onboarding Begins Soon * </span> <span> Onboarding Begins Soon * </span> <span> Onboarding Begins Soon
+            *
+          </span> <span> Onboarding Begins Soon * </span> <span> Onboarding Begins Soon * </span> <span> Onboarding
+            Begins
+            Soon * </span> <span> Onboarding Begins Soon * </span>
+        </div>
+        <div class="animated-text-sapn2">
+          <span> Onboarding Begins Soon * </span> <span> Onboarding Begins Soon * </span> <span> Onboarding Begins Soon
+            *
+          </span> <span> Onboarding Begins Soon * </span> <span> Onboarding Begins Soon * </span> <span> Onboarding
+            Begins
+            Soon * </span> <span> Onboarding Begins Soon * </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="bottom-section">
+      <div class="container">
+        <h2 class="secondary-heading text-center"><span>From concept to construction - </span> a seamless blend of innovation, craftsmanship, and timeless design. <br> Secure Your Place At
+*riddhadesiggn.com*
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- jquery link -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl.carousel.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script>
+    function parseTimeString(timeStr) {
+      const parts = timeStr.split(":").map(Number);
+      return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    }
+    function formatTime(seconds) {
+      const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+      const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+      const s = String(seconds % 60).padStart(2, '0');
+      return `${h}:${m}:${s}`;
+    }
+    const countdownElement = document.getElementById("CountDown");
+    let totalSeconds = parseTimeString(countdownElement.textContent);
+    const timer = setInterval(() => {
+      if (totalSeconds <= 0) {
+        clearInterval(timer);
+        countdownElement.textContent = "00:00:00";
+        return;
+      }
+      totalSeconds--;
+      countdownElement.textContent = formatTime(totalSeconds);
+    }, 1000);
+  </script>
+
+</body>
+
+</html>
