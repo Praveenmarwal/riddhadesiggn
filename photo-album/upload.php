@@ -1,21 +1,32 @@
 <?php
-if(isset($_POST['upload'])) {
+$message = "";
+
+if(isset($_POST['upload'])){
 
     $targetDir = "uploads/";
-    $fileName = basename($_FILES["image"]["name"]);
-    $targetFilePath = $targetDir . $fileName;
-    $fileType = strtolower(pathinfo($targetFilePath,PATHINFO_EXTENSION));
+    $allowTypes = ['jpg','jpeg','png','webp','JPG','JPEG','PNG','WEBP'];
 
-    $allowTypes = array('jpg','png','jpeg','webp');
+    foreach($_FILES['images']['name'] as $key => $val){
 
-    if(in_array($fileType, $allowTypes)){
-        if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
-            $message = "Image uploaded successfully.";
+        $fileName = $_FILES['images']['name'][$key];
+        $tmpName  = $_FILES['images']['tmp_name'][$key];
+        $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+
+        if(in_array($fileType, $allowTypes)){
+
+            // Auto rename to avoid duplicate
+            $newFileName = time().'_'.$key.'.'.$fileType;
+            $targetFilePath = $targetDir . $newFileName;
+
+            if(move_uploaded_file($tmpName, $targetFilePath)){
+                $message .= "$fileName uploaded successfully.<br>";
+            }else{
+                $message .= "Error uploading $fileName.<br>";
+            }
+
         }else{
-            $message = "Error uploading image.";
+            $message .= "$fileName - Invalid file type.<br>";
         }
-    }else{
-        $message = "Only JPG, PNG, JPEG, WEBP allowed.";
     }
 }
 ?>
@@ -24,25 +35,25 @@ if(isset($_POST['upload'])) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Upload Architecture Image</title>
+<title>Upload Architecture Images</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
 
 <div class="container py-5">
-    <h2 class="text-center mb-4">Upload Architecture Project Image</h2>
+    <h2 class="text-center mb-4">Upload Multiple Architecture Images</h2>
 
-    <?php if(isset($message)) echo "<div class='alert alert-info'>$message</div>"; ?>
+    <?php if($message!=""){ ?>
+        <div class="alert alert-info"><?php echo $message; ?></div>
+    <?php } ?>
 
     <form method="post" enctype="multipart/form-data" class="card p-4 shadow">
         <div class="mb-3">
-            <label>Select Image</label>
-            <input type="file" name="image" class="form-control" required>
+            <label>Select Images</label>
+            <input type="file" name="images[]" class="form-control" multiple required>
         </div>
-        <button type="submit" name="upload" class="btn btn-dark w-100">Upload</button>
+        <button type="submit" name="upload" class="btn btn-dark w-100">Upload Images</button>
     </form>
 
     <div class="text-center mt-4">
